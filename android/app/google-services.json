@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252112658087",
+    "project_id": "employeemanagement-55901",
+    "storage_bucket": "employeemanagement-55901.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252112658087:android:9a6ab60c931af4bb34c582",
+        "android_client_info": {
+          "package_name": "com.employeemanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChcuwLlpJZVpqQXO2pxgBt_PpBo71bFwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
