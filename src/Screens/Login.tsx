@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Google} from '../assets/CustomIcons';
 import auth from '@react-native-firebase/auth';
 import {
@@ -18,13 +18,34 @@ import {
 } from '../assets/theme/theme';
 import TextInputComponent from '../Components/InputTextComponent';
 import ButtonComponent from '../Components/ButtonComponent';
-
+import firestore from '@react-native-firebase/firestore';
 const Login = ({navigation}: any) => {
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [usersData, setUsersData] = useState({});
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  useEffect(() => {
+    getAdminData();
+  }, []);
+  const getAdminData = async () => {
+    const users = await firestore().collection('admin').get();
+    const userDataArray = users.docs.map(doc => doc.data());
+    setUsersData(userDataArray);
+    console.log('usersData', usersData);
+  };
+
+  function isEmailInUsersData() {
+    for (let i = 0; i < usersData.length; i++) {
+      if (usersData[i].email === email) {
+        return true;
+      }
+      console.log(usersData[i]);
+    }
+    return false;
+  }
 
   const handleLogin = () => {
     if (email.length < 1 || password.length < 1) {
@@ -41,7 +62,12 @@ const Login = ({navigation}: any) => {
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           Alert.alert('Logged in successfully');
-          navigation.push('Home');
+          console.log(isEmailInUsersData());
+          if (isEmailInUsersData()) {
+            navigation.push('Dashboard');
+          } else {
+            navigation.push('Home');
+          }
         })
         .catch(error => {
           console.error(error);

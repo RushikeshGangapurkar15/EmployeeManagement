@@ -7,6 +7,7 @@ import Login from './src/Screens/Login';
 import SignUp from './src/Screens/SignUp';
 import ForgetPassword from './src/Screens/ForgetPassword';
 import Home from './src/Screens/Home';
+import Dashboard from './src/Screens/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,10 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{animation: 'slide_from_bottom'}}></Stack.Screen>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
           options={{animation: 'slide_from_bottom'}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

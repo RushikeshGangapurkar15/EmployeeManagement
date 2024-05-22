@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ButtonComponent from '../Components/ButtonComponent';
 import {CheckBox, Google} from '../assets/CustomIcons';
 import auth from '@react-native-firebase/auth';
@@ -18,15 +18,25 @@ import {
   FONTSIZE,
 } from '../assets/theme/theme';
 import TextInputComponent from '../Components/InputTextComponent';
+import firestore from '@react-native-firebase/firestore';
+
 const SignupScreen = ({navigation}: any) => {
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [mobile, setMobile] = useState('');
+
   const [error, setError] = useState('');
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   // const {appwrite} = useContext(AppwriteContext);
 
   const handleSignUp = () => {
-    if (email.length < 1 || password.length < 1) {
+    if (
+      email.length < 1 ||
+      password.length < 1 ||
+      fullName.length < 1 ||
+      mobile.length < 1
+    ) {
       setError('All field are require');
       Alert.alert('All field are require');
     } else if (password.length < 8) {
@@ -39,6 +49,18 @@ const SignupScreen = ({navigation}: any) => {
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
+          firestore()
+            .collection('employee')
+            .add({
+              email: email,
+              password: password,
+              fullName: fullName,
+              mobile: mobile,
+            })
+            .then(() => {
+              console.log('User added!');
+            });
+
           Alert.alert('User account created ');
           navigation.pop();
         })
@@ -73,7 +95,6 @@ const SignupScreen = ({navigation}: any) => {
               isPassword={false}
             />
           </View>
-
           <View style={styles.InputText}>
             <Text style={styles.loginSubTextinputTitle}>Password </Text>
             <TextInputComponent
@@ -81,6 +102,24 @@ const SignupScreen = ({navigation}: any) => {
               onChangeText={(text: any) => setPassword(text)}
               placeholder="Password"
               isPassword={true}
+            />
+          </View>
+          <View style={styles.InputText}>
+            <Text style={styles.loginSubTextinputTitle}>Full Name </Text>
+            <TextInputComponent
+              value={fullName}
+              onChangeText={(text: any) => setFullName(text)}
+              placeholder="Enter Full Name"
+              isPassword={false}
+            />
+          </View>
+          <View style={styles.InputText}>
+            <Text style={styles.loginSubTextinputTitle}>Mobile number </Text>
+            <TextInputComponent
+              value={mobile}
+              onChangeText={(text: any) => setMobile(text)}
+              placeholder="Enter Mobile Number"
+              isPassword={false}
             />
           </View>
         </View>
