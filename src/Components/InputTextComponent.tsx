@@ -39,6 +39,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         placeholderTextColor={COLORS.secendaryGreyHex}
+        color={COLORS.primaryBlackHex}
       />
 
       {/* Toggle button for password visibility, rendered only if isPassword prop is true */}
@@ -46,7 +47,6 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
         <TouchableOpacity
           onPress={toggleSecureTextEntry}
           style={styles.toggleButton}>
-          {/* EyeComponent and CloseEye are custom icons for password visibility */}
           {secureTextEntry ? (
             <EyeComponent
               height={20}
