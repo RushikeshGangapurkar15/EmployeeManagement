@@ -65,8 +65,12 @@ const Login = ({navigation}: any) => {
           console.log(isEmailInUsersData());
           if (isEmailInUsersData()) {
             navigation.push('Dashboard');
+            setemail('');
+            setPassword('');
           } else {
             navigation.push('Home');
+            setemail('');
+            setPassword('');
           }
         })
         .catch(error => {

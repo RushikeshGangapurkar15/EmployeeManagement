@@ -63,6 +63,10 @@ const SignupScreen = ({navigation}: any) => {
 
           Alert.alert('User account created ');
           navigation.pop();
+          setemail('');
+          setFullName('');
+          setMobile('');
+          setPassword('');
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {

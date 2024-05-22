@@ -233,7 +233,8 @@ const Dashboard = ({navigation}) => {
         renderItem={renderEmployeeItem}
         keyExtractor={item => item.id}
         ListEmptyComponent={<Text>No employees found.</Text>}
-        contentContainerStyle={{gap: 10, marginTop: 30}}
+        contentContainerStyle={{gap: 10, paddingVertical: 30}}
+        showsVerticalScrollIndicator={false}
       />
       <ButtonComponent title="Add Employee" onPress={openModalForEdit} />
       <Modal
