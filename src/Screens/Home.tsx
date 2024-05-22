@@ -10,8 +10,14 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {LogoutIcon} from '../assets/CustomIcons';
 
+interface UserData {
+  email: string;
+  fullName: string;
+  mobile: string;
+}
+
 const Home = ({navigation}) => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
     fetchUserData();
@@ -20,7 +26,7 @@ const Home = ({navigation}) => {
   const fetchUserData = async () => {
     const user = auth().currentUser;
 
-    if (user) {
+    if (user && user.email) {
       const email = user.email;
 
       try {
@@ -30,7 +36,7 @@ const Home = ({navigation}) => {
           .get();
 
         if (!userDoc.empty) {
-          const userData = userDoc.docs[0].data();
+          const userData = userDoc.docs[0].data() as UserData;
           const {fullName, mobile} = userData;
 
           console.log('User Email:', email);
@@ -102,7 +108,6 @@ const Home = ({navigation}) => {
     </View>
   );
 };
-
 export default Home;
 
 const styles = StyleSheet.create({

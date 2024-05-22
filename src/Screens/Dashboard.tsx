@@ -1,16 +1,15 @@
 import {
   Alert,
   FlatList,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  Modal,
   TextInput,
   Button,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Modal} from 'react-native';
 import {
   BORDERRADIUS,
   COLORS,
@@ -20,12 +19,20 @@ import {
 import ButtonComponent from '../Components/ButtonComponent';
 import firestore from '@react-native-firebase/firestore';
 import {EditIcon, LogoutIcon} from '../assets/CustomIcons';
-
 import auth from '@react-native-firebase/auth';
 import TextInputComponent from '../Components/InputTextComponent';
-const Dashboard = ({navigation}) => {
-  const [employeeData, setEmployeedata] = useState({});
 
+// Define the type for employee data
+interface Employee {
+  id: string;
+  fullName: string;
+  email: string;
+  mobile: string;
+  // Include other fields if necessary
+}
+
+const Dashboard = ({navigation}) => {
+  const [employeeData, setEmployeedata] = useState<Employee[]>([]); // Use the Employee type here
   const [modalVisible, setModalVisible] = useState(false);
   const [editmodalVisible, setEditModalVisible] = useState(false);
   const [name, setName] = useState('');
@@ -44,10 +51,10 @@ const Dashboard = ({navigation}) => {
       const employeeList = employeeCollection.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-      }));
+      })) as Employee[]; // Type assertion here
 
       setEmployeedata(employeeList);
-      console.log('new', employeeData);
+      console.log('Fetched employee data:', employeeList);
     } catch (error) {
       console.error('Error fetching employee data:', error);
       Alert.alert('Error fetching employee data');
@@ -74,7 +81,12 @@ const Dashboard = ({navigation}) => {
       });
   };
 
-  const editModal = (id, name, email, mobile) => {
+  const editModal = (
+    id: string,
+    name: string,
+    email: string,
+    mobile: string,
+  ) => {
     setEditModalVisible(true);
     setId(id);
     setName(name);
@@ -82,7 +94,7 @@ const Dashboard = ({navigation}) => {
     setMobile(mobile);
   };
 
-  const editEmployee = async id => {
+  const editEmployee = async (id: string) => {
     try {
       await firestore().collection('employee').doc(id).update({
         fullName: name,
@@ -130,7 +142,8 @@ const Dashboard = ({navigation}) => {
       {cancelable: true},
     );
   };
-  const DeleteEmployee = (id, name) => {
+
+  const DeleteEmployee = (id: string, name: string) => {
     Alert.alert(
       'Confirm Deletion',
       `Are you sure you want to delete ${name}?`,
@@ -158,7 +171,7 @@ const Dashboard = ({navigation}) => {
     );
   };
 
-  const MakeAdmin = id => {
+  const MakeAdmin = (id: string) => {
     Alert.alert(
       'Confirm Making Admin',
       `Are you sure you want to make admin to ${name}?`,
@@ -195,7 +208,7 @@ const Dashboard = ({navigation}) => {
     );
   };
 
-  const renderEmployeeItem = ({item}) => (
+  const renderEmployeeItem = ({item}: {item: Employee}) => (
     <View style={styles.itemContainer}>
       <View>
         <Text style={styles.itemText}>
@@ -218,6 +231,7 @@ const Dashboard = ({navigation}) => {
       </TouchableOpacity>
     </View>
   );
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Admin Dashboard</Text>
@@ -229,7 +243,7 @@ const Dashboard = ({navigation}) => {
       </TouchableOpacity>
 
       <FlatList
-        data={employeeData}
+        data={employeeData} // Ensure this is an array of Employee
         renderItem={renderEmployeeItem}
         keyExtractor={item => item.id}
         ListEmptyComponent={<Text>No employees found.</Text>}

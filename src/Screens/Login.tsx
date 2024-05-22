@@ -23,7 +23,7 @@ const Login = ({navigation}: any) => {
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [usersData, setUsersData] = useState({});
+  const [usersData, setUsersData] = useState<any[]>([]);
   const [loading, setLoding] = useState(false);
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

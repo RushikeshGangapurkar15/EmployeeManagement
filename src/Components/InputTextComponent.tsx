@@ -33,13 +33,12 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
     <View style={styles.inputContainer}>
       {/* TextInput for user input */}
       <TextInput
-        style={styles.input}
+        style={[styles.input, {color: COLORS.primaryBlackHex}]}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         placeholderTextColor={COLORS.secendaryGreyHex}
-        color={COLORS.primaryBlackHex}
       />
 
       {/* Toggle button for password visibility, rendered only if isPassword prop is true */}
