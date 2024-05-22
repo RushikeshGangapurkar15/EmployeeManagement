@@ -1,5 +1,7 @@
 import React from 'react';
+import {View} from 'react-native';
 import {Svg, Path, Rect, Circle, Mask} from 'react-native-svg';
+import {COLORS} from './theme/theme';
 
 export const NextArrow = ({width, height, color}) => {
   return (
@@ -18,36 +20,7 @@ export const NextArrow = ({width, height, color}) => {
     </Svg>
   );
 };
-export const ProgressNext = ({width, height, color}) => {
-  return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 96 96"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <Rect x="17" y="17" width="62" height="62" rx="31" fill="white" />
-      <Path
-        d="M40 47.7257C40 47.346 40.2821 47.0322 40.6482 46.9825L40.75 46.9757L53.934 46.9763L49.171 42.2327C48.8775 41.9405 48.8764 41.4656 49.1687 41.1721C49.4344 40.9052 49.851 40.8801 50.1451 41.0974L50.2294 41.1698L56.2794 47.1938C56.318 47.2323 56.3517 47.274 56.3802 47.318C56.3882 47.3313 56.3964 47.3448 56.4042 47.3587C56.4114 47.3705 56.4178 47.3828 56.4239 47.3953C56.4324 47.4134 56.4407 47.4321 56.4482 47.4512C56.4543 47.4659 56.4594 47.4802 56.464 47.4947C56.4695 47.5126 56.4749 47.5316 56.4795 47.551C56.483 47.5645 56.4857 47.5775 56.488 47.5906C56.4914 47.61 56.4942 47.6301 56.4962 47.6505C56.498 47.666 56.499 47.6814 56.4996 47.6967C56.4998 47.7061 56.5 47.7158 56.5 47.7257L56.4996 47.7547C56.499 47.7694 56.498 47.7841 56.4966 47.7988L56.5 47.7257C56.5 47.773 56.4956 47.8193 56.4872 47.8642C56.4853 47.8749 56.4829 47.8859 56.4804 47.8969C56.475 47.9195 56.4689 47.9412 56.4618 47.9625C56.4583 47.9731 56.4543 47.9844 56.4499 47.9957C56.4412 48.0182 56.4316 48.0397 56.4212 48.0607C56.4163 48.0705 56.4108 48.0809 56.4051 48.0911C56.3958 48.1077 56.3861 48.1236 56.3759 48.139C56.3687 48.1499 56.3607 48.1613 56.3524 48.1725L56.3459 48.1811C56.3257 48.2075 56.3038 48.2325 56.2803 48.256L56.2794 48.2567L50.2294 54.2817C49.9359 54.574 49.461 54.573 49.1687 54.2795C48.903 54.0127 48.8797 53.596 49.0981 53.3028L49.1709 53.2188L53.932 48.4763L40.75 48.4757C40.3358 48.4757 40 48.1399 40 47.7257Z"
-        fill={color}
-      />
-      <Circle
-        opacity="0.08"
-        cx="48"
-        cy="48"
-        r="47"
-        stroke="white"
-        stroke-width="2"
-      />
-      <Path
-        d="M1 48C1 73.9574 22.0426 95 48 95C73.9574 95 95 73.9574 95 48C95 22.0426 73.9574 1 48 1"
-        stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </Svg>
-  );
-};
+
 export const CloseEye = ({width, height, color}) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 22 20" fill="none">
@@ -85,70 +58,7 @@ export const EyeComponent = ({width, height, color}) => {
     </Svg>
   );
 };
-export const Google = ({width, height, color}) => {
-  return (
-    <Svg
-      width="41"
-      height="40"
-      viewBox="0 0 41 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <Rect x="1" y="0.5" width="39" height="39" rx="19.5" stroke="#D6D6D6" />
-      <Path
-        d="M30.3055 18.0415H29.5V18H20.5V22H26.1515C25.327 24.3285 23.1115 26 20.5 26C17.1865 26 14.5 23.3135 14.5 20C14.5 16.6865 17.1865 14 20.5 14C22.0295 14 23.421 14.577 24.4805 15.5195L27.309 12.691C25.523 11.0265 23.134 10 20.5 10C14.9775 10 10.5 14.4775 10.5 20C10.5 25.5225 14.9775 30 20.5 30C26.0225 30 30.5 25.5225 30.5 20C30.5 19.3295 30.431 18.675 30.3055 18.0415Z"
-        fill="#FFC107"
-      />
-      <Path
-        d="M11.653 15.3455L14.9385 17.755C15.8275 15.554 17.9805 14 20.5 14C22.0295 14 23.421 14.577 24.4805 15.5195L27.309 12.691C25.523 11.0265 23.134 10 20.5 10C16.659 10 13.328 12.1685 11.653 15.3455Z"
-        fill="#FF3D00"
-      />
-      <Path
-        d="M20.5 30C23.083 30 25.43 29.0115 27.2045 27.404L24.1095 24.785C23.0717 25.5742 21.8037 26.001 20.5 26C17.899 26 15.6905 24.3415 14.8585 22.027L11.5975 24.5395C13.2525 27.778 16.6135 30 20.5 30Z"
-        fill="#4CAF50"
-      />
-      <Path
-        d="M30.3055 18.0415H29.5V18H20.5V22H26.1515C25.7571 23.1082 25.0467 24.0766 24.108 24.7855L24.1095 24.7845L27.2045 27.4035C26.9855 27.6025 30.5 25 30.5 20C30.5 19.3295 30.431 18.675 30.3055 18.0415Z"
-        fill="#1976D2"
-      />
-    </Svg>
-  );
-};
-export const CheckBox = ({width, height, color}) => {
-  return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <Path
-        d="M4.16669 10.8333L7.50002 14.1667L15.8334 5.83334"
-        stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </Svg>
-  );
-};
-export const Clock = ({width, height, color}) => {
-  return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <Path
-        d="M10 6.66667V10L12.5 12.5M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z"
-        stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </Svg>
-  );
-};
+
 export const BackIcon = ({width, height, color}) => {
   return (
     <Svg
@@ -165,6 +75,79 @@ export const BackIcon = ({width, height, color}) => {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+      />
+    </Svg>
+  );
+};
+export const EditIcon = () => {
+  return (
+    <View style={{width: 24, height: 24}}>
+      <Svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={COLORS.primaryOrangeHex}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <Path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+        <Path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+      </Svg>
+    </View>
+  );
+};
+
+export const LogoutIcon = () => {
+  return (
+    <Svg width="32" height="32" viewBox="0 0 32 32">
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M23.93,25v3h-16V4h16V7h2V3a1,1,0,0,0-1-1h-18a1,1,0,0,0-1,1V29a1,1,0,0,0,1,1h18a1,1,0,0,0,1-1V25Z"
+      />
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M15.92,16,28.92,16"
+      />
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M28.92,16,24.92,20"
+      />
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M28.92,16,24.92,12"
+      />
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M24.92,8.09,24.92,6.09"
+      />
+      <Path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M24.92,26,24.92,24"
       />
     </Svg>
   );

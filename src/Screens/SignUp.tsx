@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import ButtonComponent from '../Components/ButtonComponent';
-import {CheckBox, Google} from '../assets/CustomIcons';
+
 import auth from '@react-native-firebase/auth';
 import {
   BORDERRADIUS,

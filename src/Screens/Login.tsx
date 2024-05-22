@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
-import {Google} from '../assets/CustomIcons';
+
 import auth from '@react-native-firebase/auth';
 import {
   BORDERRADIUS,
@@ -24,6 +24,7 @@ const Login = ({navigation}: any) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [usersData, setUsersData] = useState({});
+  const [loading, setLoding] = useState(false);
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -34,7 +35,6 @@ const Login = ({navigation}: any) => {
     const users = await firestore().collection('admin').get();
     const userDataArray = users.docs.map(doc => doc.data());
     setUsersData(userDataArray);
-    console.log('usersData', usersData);
   };
 
   function isEmailInUsersData() {
@@ -42,7 +42,7 @@ const Login = ({navigation}: any) => {
       if (usersData[i].email === email) {
         return true;
       }
-      console.log(usersData[i]);
+      // console.log(usersData[i]);
     }
     return false;
   }
